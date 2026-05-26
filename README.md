@@ -1,43 +1,39 @@
 # condition-gitea-actions
 
-Gitea Actions condition plugin for Semantic Release.
+Allows releases only when semrel is running inside Gitea Actions.
 
-Validates Gitea Actions runtime conditions before a Semantic Release is executed.
+This plugin is distributed as the standalone Go binary `semrel-plugin-condition-gitea-actions`. Semrel executes the binary as a subprocess, provides plugin configuration through `SEMREL_PLUGIN_*` environment variables, provides release context through `SEMREL_*` environment variables, reads standard output, and treats exit code `0` as success and any non-zero exit code as failure. Install the binary in `~/.semrel/plugins/` or anywhere on your `$PATH`.
 
-## Documentation
+## Installation
 
-- Docs (coming soon): <https://github.com/SemRels/semrel/tree/main/docs/plugins/condition-gitea-actions>
-- Template source: <https://github.com/SemRels/plugin-template>
+```bash
+go install github.com/SemRels/condition-gitea-actions/cmd/plugin@latest
+```
 
-## Repository Layout
+## Configuration
 
-`	ext
-cmd/plugin/              Plugin entry point
-internal/plugin/         Business logic scaffold
-internal/grpc/           gRPC transport scaffold
-proto/v1                 Symlink to the SemRel protobuf contract
-.github/workflows/       CI, release, and security automation
-`
-
-## Development
-
-`ash
-go build ./cmd/plugin
-go test ./...
-`
-
-## Configuration Example
-
-`yaml
+```yaml
 plugins:
   - name: condition-gitea-actions
-    type: condition
-    config:
-      require_branch: main
-      require_event: push
-      require_repository_owner: semrels
-`
+    path: ~/.semrel/plugins/semrel-plugin-condition-gitea-actions
+    env:
+      {}
+```
 
-## Status
+## `SEMREL_PLUGIN_*` variables
 
-This repository is bootstrapped from SemRels/plugin-template and is ready for implementation.
+| Name | Required | Description | Default |
+| --- | --- | --- | --- |
+| _None_ | - | This plugin does not require any `SEMREL_PLUGIN_*` variables. It relies on CI-provided environment state. | - |
+
+## `SEMREL_*` release context used
+
+This plugin does not consume any `SEMREL_*` release context variables directly.
+
+## Example behavior
+
+The plugin checks the CI environment and succeeds when `GITEA_ACTIONS=true`. Outside Gitea Actions it exits non-zero to stop the release.
+
+## License
+
+Apache-2.0
