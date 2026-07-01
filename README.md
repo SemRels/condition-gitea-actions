@@ -1,6 +1,6 @@
 # condition-gitea-actions
 
-[![Latest Release](https://img.shields.io/github/v/release/SemRels/condition-gitea-actions?label=version\&color=blue)](https://github.com/SemRels/condition-gitea-actions/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/SemRels/condition-gitea-actions?label=version&color=blue)](https://github.com/SemRels/condition-gitea-actions/releases/latest)
 
 Allows releases only when semrel is running inside Gitea Actions.
 
