@@ -1,6 +1,6 @@
 # Code of Conduct
 
-condition-gitea-actions is committed to providing a welcoming and harassment-free community.
+`condition-gitea-actions` is committed to providing a welcoming and harassment-free community.
 
 ## Our Pledge
 
