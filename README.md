@@ -39,17 +39,13 @@ cosign verify ghcr.io/semrels/condition-gitea-actions:latest \
 
 ```yaml
 plugins:
-  - name: condition-gitea-actions
-    path: ~/.semrel/plugins/semrel-plugin-condition-gitea-actions
-    env:
-      {}
+  - uses: "@semrel/condition-gitea-actions"
+    phase: condition
 ```
 
-## `SEMREL_PLUGIN_*` variables
+## Options
 
-| Name | Required | Description | Default |
-| --- | --- | --- | --- |
-| _None_ | - | This plugin does not require any `SEMREL_PLUGIN_*` variables. It relies on CI-provided environment state. | - |
+This plugin has no options. It relies on CI-provided environment state.
 
 ## `SEMREL_*` release context used
 
